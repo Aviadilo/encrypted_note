@@ -1,8 +1,11 @@
-from django.forms import ModelForm
+from django import forms
 from .models import Note
 
 
-class NoteForm(ModelForm):
+class NoteCreateForm(forms.ModelForm):
+    category = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput, help_text='key for encoding')
+
     class Meta:
         model = Note
         fields = ['note_body']

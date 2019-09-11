@@ -1,7 +1,7 @@
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from .models import Note, Category
-from .forms import NoteForm
+from .forms import NoteCreateForm
 from django.urls import reverse_lazy
 from cryptography.fernet import Fernet
 import base64
@@ -47,13 +47,13 @@ class NoteList(ListView):
 class NoteCreate(CreateView):
     model = Note
     template_name = 'note_create.html'
-    form_class = NoteForm
+    form_class = NoteCreateForm
 
     def form_valid(self, form):
         self.object = form.save()
         user_key = self.request.POST.get('password')
-        category_from_form = self.request.POST.get('category')
-        ctg, created = Category.objects.get_or_create(category_name=category_from_form, defaults={'category_name': category_from_form})
+        category = self.request.POST.get('category')
+        ctg, created = Category.objects.get_or_create(category_name=category, defaults={'category_name': category})
         self.object.category = ctg
         self.object.note_body = encrypt(key=user_key, note_text=self.object.note_body)
         return super().form_valid(form)

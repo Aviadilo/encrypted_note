@@ -3,21 +3,18 @@
 {% block title %}Create note{% endblock %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
+<div class="row">
 
-        <input type="text" ID="ctg" name="category" required>
-        <label for="ctg">
-            Категория
-        </label><br>
+    <div class="col-3"></div>
 
-        <input type="password" ID="pass" name="password" maxlength="32" required>
-        <label for="pass">
-            * Пароль
-        </label><br>
+    <div class="col-6">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
 
-        <input type="submit" value="Save" class="btn btn-success">
-        <input type="button" value="Back" onclick="history.back();" class="btn btn-danger">
-    </form>
+            <input type="submit" value="Save" class="btn btn-success m-1"><br>
+            <input type="button" value="Back" onclick="history.back();" class="btn btn-danger m-1">
+        </form>
+    </div>
+</div>
 {% endblock %}
