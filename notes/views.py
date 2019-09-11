@@ -40,7 +40,7 @@ def decrypt(key, note_text):
 
 
 class NoteList(ListView):
-    model = Note
+    model = Category
     template_name = 'note_list.html'
 
 
