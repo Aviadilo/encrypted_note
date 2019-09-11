@@ -20,6 +20,8 @@ class Category(models.Model):
 class Note(models.Model):
     category = models.ForeignKey(
         Category,
+        null=True,
+        blank=True,
         related_name='category_to_note',
         on_delete=models.PROTECT
     )
@@ -30,8 +32,20 @@ class Note(models.Model):
         blank=False
     )
 
+    created_date = models.DateTimeField(
+        "Created",
+        auto_now=False,
+        auto_now_add=True
+    )
+
+    updated_date = models.DateTimeField(
+        "Updated",
+        auto_now=True,
+        auto_now_add=False
+    )
+
     def __str__(self):
-        return "Note № %s" % self.id
+        return "Note № %s" % self.pk
 
     class Meta:
         verbose_name = 'Note'
