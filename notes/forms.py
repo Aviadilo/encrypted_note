@@ -3,7 +3,7 @@ from .models import Note
 
 
 class NoteCreateForm(forms.ModelForm):
-    category = forms.CharField()
+    category = forms.CharField(required=False)
     password = forms.CharField(widget=forms.PasswordInput, help_text='key for encoding')
 
     class Meta:
