@@ -35,8 +35,16 @@ def decrypt(key, note_text):
     return str(decrypted_text, 'utf-8')
 
 
-def set_category(category):
+def set_category(self):
+    category = self.request.POST.get('category')
     if category == '':
         category = 'No category'
     ctg, created = Category.objects.get_or_create(category_name=category, defaults={'category_name': category})
     return ctg
+
+
+def set_key(self):
+    user_key = self.request.POST.get('password_for_encode')
+    if user_key == '':
+        user_key = self.request.POST.get('password_for_decode')
+    return user_key

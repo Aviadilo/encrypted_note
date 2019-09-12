@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Note № {{ object.pk }}{% endblock %}
+
+{% block content %}
+    <div class="row mt-3">
+
+        <div class="col-3"></div>
+
+        <div class="col-6">
+            <div class="card" style="width: auto;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ object.category }}</h5>
+                    <p class="card-text">{{ object.note_body }}</p>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">Update</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3 collapse" id="collapseForm">
+        <div class="col-3"></div>
+
+        <div class="col-6">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <input type="submit" value="Save changes" name="update_and_encode" class="btn btn-primary">
+                <input type="button" value="Back" onclick="history.back();" class="btn btn-danger">
+            </form>
+        </div>
+    </div>
+{% endblock %}
