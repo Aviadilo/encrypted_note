@@ -1,4 +1,5 @@
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from .models import Note, Category
 from .forms import NoteCreateForm
@@ -42,6 +43,11 @@ def decrypt(key, note_text):
 class NoteList(ListView):
     model = Category
     template_name = 'note_list.html'
+
+
+class NoteEncoded(DetailView):
+    model = Note
+    template_name = 'note_detail.html'
 
 
 class NoteCreate(CreateView):

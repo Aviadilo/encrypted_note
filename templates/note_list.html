@@ -27,7 +27,7 @@
                 {% for note in category.category_to_note.all %}
                         <tr class="collapse" id="collapse{{ category.pk }}">
                             <td>
-                                <a href="#">{{ note }}</a>
+                                <a href="{% url 'note-encoded-detail' note.pk %}">{{ note }}</a>
                             </td>
                             <td>
                                 {{ note.created_date|date:"j M Y, G:i" }}
