@@ -5,6 +5,7 @@ from .models import Note, Category
 from .forms import NoteCreateForm, NoteUpdateForm
 from django.urls import reverse_lazy
 from .func import *
+from django.http import Http404
 
 
 class NoteList(ListView):
@@ -41,11 +42,11 @@ class NoteDecoded(UpdateView):
     def get_object(self, queryset=None):
         obj = super().get_object()
         user_key = self.request.POST.get('password_for_decode')
-        try:
-            obj.note_body = decrypt(key=user_key, note_text=obj.note_body)
+        obj.note_body = decrypt(key=user_key, note_text=obj.note_body)
+        if obj.note_body == 'Invalid key':
+            raise Http404()
+        else:
             return obj
-        except:
-            return reverse_lazy('note-encoded-detail', kwargs={'pk': self.object.pk})
 
     def get_form_kwargs_formmixin(self):
         kwargs = {

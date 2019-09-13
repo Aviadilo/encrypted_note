@@ -31,8 +31,11 @@ def decrypt(key, note_text):
     # make cipher based on padded_key
     cipher = Fernet(padded_key)
     # decrypt the text
-    decrypted_text = cipher.decrypt(byte_note_text)
-    return str(decrypted_text, 'utf-8')
+    try:
+        decrypted_text = cipher.decrypt(byte_note_text)
+        return str(decrypted_text, 'utf-8')
+    except:
+        return 'Invalid key'
 
 
 def set_category(self):
