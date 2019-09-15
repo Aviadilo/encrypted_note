@@ -17,11 +17,11 @@
         {{ object.note_body }}
     </div>
 
-    <form method="post" action="#">
+    <form method="post" action="{% url 'note-decoded-update' object.pk %}">
         {% csrf_token %}
-        <input type="password" ID="pass" name="password_for_decode" required>
+        <input type="password" ID="pass" name="password_for_decode" required maxlength="32">
         <label for="pass">
-            * password for decoding
+            * key for decoding
         </label><br>
         <input type="submit" value="Decode" class="btn btn-primary">
     </form>
