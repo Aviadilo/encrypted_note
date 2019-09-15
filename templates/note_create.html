@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Create note{% endblock %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col-3"></div>
+
+    <div class="col-6">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <input type="submit" value="Save" class="btn btn-success m-1"><br>
+            <input type="button" value="Back" onclick="history.back();" class="btn btn-danger m-1">
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<HTML   lang="en">
+    <HEAD>
+        <meta charset="UTF-8">
+        <title>Your favorite error page</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </HEAD>
+    <BODY>
+        <div class="row m-5">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+                <div class="alert alert-warning" role="alert">
+                    <h3 class="alert-heading">Don't panic!</h3>
+                    <p>It seems you entered the wrong key. You may take a coffee, meditate a little, have a relax -
+                        and you'll call to mind that damned key for sure! If all of the above doesn't help you -
+                        there is only one way... You have to take The Pan Galactic Gargle Blaster. After that,
+                        everything will be remembered... or forgotten forever.</p>
+                    <hr>
+                    <a href="{% url 'note-list' %}" class="btn btn-primary">Ok, I'm ready. Give me another chance!</a>
+                </div>
+            </div>
+        </div>
+    </BODY>
+</HTML>

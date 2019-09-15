@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}All notes{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+
+        <div class="col-3"></div>
+
+        <div class="col-6">
+            <table class="table table-warning">
+                {% for category in object_list %}
+                    <tr class="text-center" role="button" data-toggle="collapse"
+                        data-target="#collapse{{ category.pk }}" aria-expanded="false"
+                        aria-controls="collapse{{ category.pk }}">
+
+                        <th class="h3" colspan="3">{{ category }}</th>
+
+                    </tr>
+
+                    <tr class="collapse" id="collapse{{ category.pk }}">
+                        <th>Note number</th>
+                        <th>Created</th>
+                        <th>Updated</th>
+                    </tr>
+                {% for note in category.category_to_note.all %}
+                        <tr class="collapse" id="collapse{{ category.pk }}">
+                            <td>
+                                <a href="{% url 'note-encoded-detail' note.pk %}">{{ note }}</a>
+                            </td>
+                            <td>
+                                {{ note.created_date|date:"j M Y, G:i" }}
+                            </td>
+                            <td>
+                                {{ note.updated_date|date:"j M Y, G:i" }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}
